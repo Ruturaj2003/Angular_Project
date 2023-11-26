@@ -13,13 +13,8 @@ export class AppComponent {
       name: 'Testing',
       content: 'Test Content',
     },
-    {
-      type: 'blueprint',
-      name: 'Testing2',
-      content: 'Test 2Content',
-    },
   ];
-$event: { serverName: string; serverContent: string; };
+  $event: { serverName: string; serverContent: string };
 
   onServerAdded(serverData: { serverName: string; serverContent: string }) {
     this.serverElements.push({
