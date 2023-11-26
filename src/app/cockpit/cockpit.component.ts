@@ -1,28 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cockpit',
   templateUrl: './cockpit.component.html',
-  styleUrl: './cockpit.component.css',
+  styleUrls: ['./cockpit.component.css'],
 })
 export class CockpitComponent {
-  serverElements;
+  @Output() serverCreated = new Subject<{
+    serverName: string;
+    serverContent: string;
+  }>();
+  @Output() blueprintCreated = new Subject<{
+    serverName: string;
+    serverContent: string;
+  }>();
 
   newServerName = '';
   newServerContent = '';
+
   onAddServer() {
-    this.serverElements.push({
-      type: 'server',
-      name: this.newServerName,
-      content: this.newServerContent,
+    this.serverCreated.next({
+      serverName: this.newServerName,
+      serverContent: this.newServerContent,
     });
   }
 
   onAddBlueprint() {
-    this.serverElements.push({
-      type: 'blueprint',
-      name: this.newServerName,
-      content: this.newServerContent,
+    this.blueprintCreated.next({
+      serverName: this.newServerName,
+      serverContent: this.newServerContent,
     });
   }
 }
