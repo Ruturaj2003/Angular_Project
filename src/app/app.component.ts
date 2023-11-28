@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular_Project';
+
+  curentTab = 'recipe';
+  onNavigate(event: string) {
+    this.curentTab = event;
+  }
 }
